@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Shop Tạp Hóa</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header class="header">
+  <div class="logo">
+    <a href="/">🛒 TẠP HÓA ONLINE</a>
+  </div>
+
+  <form action="/sanpham" method="GET" class="search-form">
+    <input type="text" name="keyword" placeholder="Tìm sản phẩm..." />
+    <button type="submit">🔍</button>
+  </form>
+
+  <div class="auth">
+    <a href="/giohang">
+      🛒 Giỏ hàng (<span id="cart-count">0</span>)
+    </a>
+
+    <% if (!user) { %>
+      <!-- CHƯA ĐĂNG NHẬP -->
+      <a href="/login">Đăng nhập</a>
+      <a href="/register">Đăng ký</a>
+    <% } else { %>
+      <!-- ĐÃ ĐĂNG NHẬP -->
+      <span style="margin-left: 10px;">
+        👤 <%= user.email %>
+      </span>
+      <a href="/logout" style="margin-left: 10px;">Đăng xuất</a>
+    <% } %>
+  </div>
+</header>
+
+<nav class="menu">
+  <a href="/">Trang chủ</a>
+  <a href="/lienhe">Liên hệ</a>
+
+<% if (user && (user.role === "admin" || user.role === "nhanvien")) { %>
+  <a href="/admin" class="admin-link">Quản trị</a>
+<% } %>
+</nav>
+
+<main class="container">

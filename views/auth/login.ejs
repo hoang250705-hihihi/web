@@ -1,0 +1,37 @@
+<%- include('../layouts/main-header') %>
+
+<div class="container auth-page">
+  <h2>Đăng nhập</h2>
+
+  <form class="auth-form" id="login-form">
+    <label>Email</label>
+    <input
+      type="email"
+      name="email"
+      id="email"
+      required
+    />
+
+    <label>Mật khẩu</label>
+    <input
+      type="password"
+      name="password"
+      id="password"
+      required
+    />
+
+    <!-- Thông báo lỗi -->
+    <p id="login-error" style="color:red; margin-top:10px;"></p>
+
+    <button type="submit" class="btn">Đăng nhập</button>
+  </form>
+
+  <p class="auth-link">
+    Chưa có tài khoản?
+    <a href="/register">Đăng ký</a>
+  </p>
+</div>
+
+<script src="/js/login.js"></script>
+
+<%- include('../layouts/main-footer') %>

@@ -1,0 +1,22 @@
+<%- include('../layouts/main-header') %>
+
+<div class="container admin-dashboard">
+  <h2>⚙️ Trang quản trị</h2>
+
+  <div class="admin-menu">
+
+    <!-- ADMIN + NHÂN VIÊN -->
+    <a href="/admin/danhmuc" class="admin-card">📂 Quản lý danh mục</a>
+    <a href="/admin/sanpham" class="admin-card">📦 Quản lý sản phẩm</a>
+    <a href="/admin/khachhang" class="admin-card">🧑‍🤝‍🧑 Quản lý khách hàng</a>
+
+    <!-- CHỈ ADMIN -->
+    <% if (user.role === "admin") { %>
+      <a href="/admin/users" class="admin-card">👤 Quản lý người dùng</a>
+      <a href="/admin/nhanvien" class="admin-card">👨‍💼 Quản lý nhân viên</a>
+    <% } %>
+
+  </div>
+</div>
+
+<%- include('../layouts/main-footer') %>

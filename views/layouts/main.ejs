@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Website Bán Hàng</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<header>
+  <h1>SHOP ONLINE</h1>
+  <nav>
+    <a href="/">Trang chủ</a>
+
+    <% if (user) { %>
+      <a href="/profile">Tài khoản</a>
+      <a href="/logout">Đăng xuất</a>
+    <% } else { %>
+      <a href="/login">Đăng nhập</a>
+      <a href="/register">Đăng ký</a>
+    <% } %>
+  </nav>
+</header>
+
+<main>
+  <%- body %>
+</main>
+
+<footer>
+  <p>© 2026 - WebAPI BTL</p>
+</footer>
+
+</body>
+</html>

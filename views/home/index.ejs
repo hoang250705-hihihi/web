@@ -1,0 +1,59 @@
+<%- include('../layouts/main-header') %>
+
+<h2>Loại sản phẩm</h2>
+
+<div class="categories">
+  <!-- TẤT CẢ -->
+  <a
+    href="/"
+    class="category <%= selectedMadm === null ? 'active' : '' %>">
+    Tất cả
+  </a>
+
+  <!-- CÁC DANH MỤC -->
+  <% danhmucs.forEach(dm => { %>
+    <a
+      href="/danhmuc/<%= dm.madm %>"
+      class="category <%= selectedMadm === dm.madm ? 'active' : '' %>">
+      <%= dm.tendm %>
+    </a>
+  <% }) %>
+</div>
+
+
+<hr>
+
+<h2>Sản phẩm mới</h2>
+
+<div class="products">
+  <% sanphams.forEach(sp => { %>
+    <div class="product-card">
+
+      <!-- ẢNH SẢN PHẨM -->
+      <% if (sp.hinhanh) { %>
+        <img
+          src="/uploads/sanpham/<%= sp.hinhanh %>"
+          alt="<%= sp.tensp %>"
+          class="product-image"
+        />
+      <% } else { %>
+        <img
+          src="/images/no-image.png"
+          alt="Không có ảnh"
+          class="product-image"
+        />
+      <% } %>
+
+      <h3><%= sp.tensp %></h3>
+      <p class="price">
+        Giá: <%= sp.giatien.toLocaleString() %> VNĐ
+      </p>
+
+      <a href="/sanpham/<%= sp.masp %>" class="btn">
+        Xem chi tiết
+      </a>
+    </div>
+  <% }) %>
+</div>
+
+<%- include('../layouts/main-footer') %>

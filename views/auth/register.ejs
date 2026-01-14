@@ -1,0 +1,35 @@
+<%- include('../layouts/main-header') %>
+
+<div class="container auth-page">
+  <h2>Đăng ký</h2>
+
+  <!-- ❌ BỎ action & method -->
+  <form class="auth-form" id="register-form">
+    <label>Họ tên</label>
+    <input type="text" name="name" required />
+
+    <label>Email</label>
+    <input type="email" name="email" required />
+
+    <label>Mật khẩu</label>
+    <input type="password" name="password" required />
+
+    <label>Số điện thoại</label>
+    <input type="text" name="phone" />
+
+    <button type="submit" class="btn">Đăng ký</button>
+  </form>
+
+  <!-- NƠI HIỂN THỊ LỖI -->
+  <p id="register-message" style="color:red; margin-top:10px;"></p>
+
+  <p class="auth-link">
+    Đã có tài khoản?
+    <a href="/login">Đăng nhập</a>
+  </p>
+</div>
+
+<!-- GẮN FILE JS -->
+<script src="/js/register.js"></script>
+
+<%- include('../layouts/main-footer') %>
