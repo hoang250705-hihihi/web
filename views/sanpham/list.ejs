@@ -1,0 +1,47 @@
+<%- include('../layouts/main-header') %>
+
+<div class="container sanpham-page">
+  <h2 class="page-title">🛍️ Danh sách sản phẩm</h2>
+
+  <!-- SEARCH -->
+  <form method="get" action="/sanpham" class="search-box">
+    <input
+      type="text"
+      name="keyword"
+      placeholder="🔍 Tìm theo tên sản phẩm..."
+      value="<%= keyword || '' %>"
+    />
+    <button type="submit" class="btn">Tìm</button>
+  </form>
+
+  <!-- DANH SÁCH -->
+  <% if (!sanphams || sanphams.length === 0) { %>
+    <p class="empty-text">❌ Không có sản phẩm phù hợp</p>
+  <% } else { %>
+    <div class="products-grid">
+      <% sanphams.forEach(sp => { %>
+        <div class="product-card">
+          <a href="/sanpham/<%= sp.masp %>">
+            <div class="product-img">
+              <% if (sp.hinhanh) { %>
+                <img
+                  src="/uploads/sanpham/<%= sp.hinhanh %>"
+                  alt="<%= sp.tensp %>"
+                />
+              <% } else { %>
+                <div class="no-img">No Image</div>
+              <% } %>
+            </div>
+
+            <h3 class="product-name"><%= sp.tensp %></h3>
+            <p class="product-price">
+              <%= sp.giatien.toLocaleString ? sp.giatien.toLocaleString() : sp.giatien %> VNĐ
+            </p>
+          </a>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../layouts/main-footer') %>

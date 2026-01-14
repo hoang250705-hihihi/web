@@ -38,7 +38,8 @@ export const sanphamService = {
     await sanphamRepository.delete(masp);
     return { message: "Xóa sản phẩm thành công" };
   },
-//api cho giao diện 
+
+  //api cho giao diện 
   getAllPublic: async () => {
   return await sanphamRepository.getAllDangBan();
 },
@@ -61,5 +62,10 @@ decreaseStock: async (id, quantity) => {
   await sanphamRepository.updateStock(id, product.soluongcon - quantity);
 },
 
-
+    async search(keyword) {
+      logger.info(`Service: Searching sanpham by keyword: ${keyword}`);
+      const rows = await sanphamRepository.searchByName(keyword);
+      return rows.map((sp) => new SanPhamDTO(sp));
+    },
+  
 };

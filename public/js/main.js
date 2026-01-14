@@ -8,24 +8,36 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const maxStock = Number(btnAddCart.dataset.stock);
 
-  // TĂNG
-  btnIncrease.addEventListener("click", () => {
-    let current = Number(qtyInput.value);
-    if (current < maxStock) {
-      qtyInput.value = current + 1;
-    }
-  });
+  // ================= TĂNG SỐ LƯỢNG =================
+  if (btnIncrease) {
+    btnIncrease.addEventListener("click", () => {
+      let current = Number(qtyInput.value);
+      if (current < maxStock) {
+        qtyInput.value = current + 1;
+      }
+    });
+  }
 
-  // GIẢM
-  btnDecrease.addEventListener("click", () => {
-    let current = Number(qtyInput.value);
-    if (current > 1) {
-      qtyInput.value = current - 1;
-    }
-  });
+  // ================= GIẢM SỐ LƯỢNG =================
+  if (btnDecrease) {
+    btnDecrease.addEventListener("click", () => {
+      let current = Number(qtyInput.value);
+      if (current > 1) {
+        qtyInput.value = current - 1;
+      }
+    });
+  }
 
-  // THÊM VÀO GIỎ HÀNG
+  // ================= THÊM VÀO GIỎ HÀNG =================
   btnAddCart.addEventListener("click", () => {
+
+    // ❌ CHƯA ĐĂNG NHẬP → KHÔNG CHO THÊM
+    if (typeof isLoggedIn !== "undefined" && !isLoggedIn) {
+      alert("⚠️ Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng");
+      window.location.href = "/login";
+      return;
+    }
+
     const productId = btnAddCart.dataset.id;
     const name = btnAddCart.dataset.name;
     const price = Number(btnAddCart.dataset.price);
@@ -65,7 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// CẬP NHẬT SỐ LƯỢNG TRÊN ICON GIỎ HÀNG
+// ================= CẬP NHẬT SỐ LƯỢNG ICON GIỎ =================
 function updateCartCount() {
   const cart = JSON.parse(localStorage.getItem("cart")) || [];
   const total = cart.reduce((sum, item) => sum + item.quantity, 0);
@@ -76,7 +88,7 @@ function updateCartCount() {
   }
 }
 
-// HIỂN THỊ GIỎ HÀNG
+// ================= HIỂN THỊ GIỎ HÀNG =================
 document.addEventListener("DOMContentLoaded", () => {
   const cartBody = document.getElementById("cart-body");
   const cartTotal = document.getElementById("cart-total");
@@ -95,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     cartBody.innerHTML += `
       <tr>
         <td>
-          <img src="/uploads/sanpham/${item.image}" alt="${item.name}">
+          <img src="/uploads/sanpham/${item.image}" alt="${item.name}" style="width:60px">
         </td>
         <td>${item.name}</td>
         <td>${item.price.toLocaleString()} VNĐ</td>
@@ -105,9 +117,12 @@ document.addEventListener("DOMContentLoaded", () => {
     `;
   });
 
-  cartTotal.textContent = `Tổng tiền: ${total.toLocaleString()} VNĐ`;
+  if (cartTotal) {
+    cartTotal.textContent = `Tổng tiền: ${total.toLocaleString()} VNĐ`;
+  }
 });
-//  thanh toán
+
+// ================= THANH TOÁN =================
 document.addEventListener("DOMContentLoaded", () => {
   const checkoutBtn = document.getElementById("btn-checkout");
   if (!checkoutBtn) return;
@@ -136,14 +151,10 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      // ✅ Thành công
       alert("Thanh toán thành công 🎉");
 
-      // XÓA GIỎ HÀNG
       localStorage.removeItem("cart");
       updateCartCount();
-
-      // Quay về trang chủ
       window.location.href = "/";
     } catch (err) {
       alert("Có lỗi xảy ra khi thanh toán");
@@ -151,5 +162,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// CHẠY NGAY KHI LOAD
+// ================= CHẠY KHI LOAD =================
 updateCartCount();

@@ -17,23 +17,27 @@
     <button type="submit">🔍</button>
   </form>
 
-  <div class="auth">
+<div class="auth">
+
+  <% if (user) { %>
+    <!-- ĐÃ ĐĂNG NHẬP -->
     <a href="/giohang">
       🛒 Giỏ hàng (<span id="cart-count">0</span>)
     </a>
 
-    <% if (!user) { %>
-      <!-- CHƯA ĐĂNG NHẬP -->
-      <a href="/login">Đăng nhập</a>
-      <a href="/register">Đăng ký</a>
-    <% } else { %>
-      <!-- ĐÃ ĐĂNG NHẬP -->
-      <span style="margin-left: 10px;">
-        👤 <%= user.email %>
-      </span>
-      <a href="/logout" style="margin-left: 10px;">Đăng xuất</a>
-    <% } %>
-  </div>
+    <span class="user-email">
+      👤 <%= user.email %>
+    </span>
+
+    <a href="/logout">Đăng xuất</a>
+
+  <% } else { %>
+    <!-- CHƯA ĐĂNG NHẬP -->
+    <a href="/login">Đăng nhập</a>
+    <a href="/register">Đăng ký</a>
+  <% } %>
+
+</div>
 </header>
 
 <nav class="menu">

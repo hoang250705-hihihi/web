@@ -518,3 +518,217 @@ input[type="number"] {
   resize: none;
 }
 
+/* ================= SAN PHAM LIST ================= */
+.sanpham-page {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.page-title {
+  margin-bottom: 15px;
+}
+
+/* SEARCH */
+.search-box {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.search-box .btn {
+  padding: 10px 18px;
+}
+
+/* GRID */
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* CARD */
+.product-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: box-shadow 0.2s ease;
+}
+
+.product-card:hover {
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+.product-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* IMAGE */
+.product-img {
+  height: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+}
+
+.product-img img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: cover;
+}
+
+.no-img {
+  color: #999;
+  font-size: 14px;
+}
+
+/* INFO */
+.product-name {
+  font-size: 16px;
+  margin: 10px;
+  height: 40px;
+  overflow: hidden;
+}
+
+.product-price {
+  color: #e74c3c;
+  font-weight: bold;
+  margin: 0 10px 12px;
+}
+
+/* EMPTY */
+.empty-text {
+  text-align: center;
+  color: #777;
+  margin-top: 40px;
+}
+/* ====== ADMIN DANH MỤC ====== */
+
+.admin-container {
+  max-width: 1100px;
+  margin: auto;
+}
+
+.admin-form {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.admin-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  width: 260px;
+}
+
+/* ===== TABLE ===== */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-table th {
+  background: #f5f7fa;
+  padding: 12px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.admin-table td {
+  padding: 12px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.admin-table tr:nth-child(even) {
+  background: #fafafa;
+}
+
+/* ===== INPUT DANH MỤC ===== */
+.dm-input {
+  width: 260px;
+  padding: 7px 10px;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: transparent;
+  text-align: center;
+  font-size: 14px;
+  transition: all 0.2s ease;
+}
+
+.dm-input[readonly] {
+  cursor: default;
+  color: #333;
+}
+
+/* Khi đang sửa */
+.dm-input:not([readonly]) {
+  border: 1px solid #4a90e2;
+  background: #f0f7ff;
+  text-align: left;
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  padding: 6px 12px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.btn-edit {
+  background: #f6a623;
+  color: #fff;
+}
+
+.btn-save {
+  background: #27ae60;
+  color: #fff;
+}
+
+.btn-cancel {
+  background: #bdc3c7;
+  color: #2c3e50;
+}
+
+.btn-delete {
+  background: #e74c3c;
+  color: #fff;
+  margin-left: 6px;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* ===== SUCCESS / ERROR ===== */
+.success {
+  background: #eafaf1;
+  color: #27ae60;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+
+.error {
+  background: #fdecea;
+  color: #e74c3c;
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+}
+

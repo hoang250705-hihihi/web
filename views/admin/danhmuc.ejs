@@ -1,0 +1,76 @@
+<%- include('../layouts/main-header') %>
+
+<div class="admin-container">
+  <h2>📂 Quản lý danh mục</h2>
+
+  <% if (typeof success_msg !== 'undefined' && success_msg) { %>
+    <p class="success"><%= success_msg %></p>
+  <% } %>
+
+  <% if (typeof error_msg !== 'undefined' && error_msg) { %>
+    <p class="error"><%= error_msg %></p>
+  <% } %>
+
+  <!-- THÊM DANH MỤC -->
+  <form method="POST" action="/admin/danhmuc" class="admin-form">
+    <input name="tendm" placeholder="Tên danh mục" required />
+    <button class="btn">➕ Thêm</button>
+  </form>
+
+  <!-- DANH SÁCH -->
+  <table class="admin-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Tên danh mục</th>
+        <th>Hành động</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% (danhmucs || []).forEach(dm => { %>
+        <tr data-id="<%= dm.madm %>">
+          <td><%= dm.madm %></td>
+
+          <td>
+            <input
+              type="text"
+              class="dm-input"
+              value="<%= dm.tendm %>"
+              data-original="<%= dm.tendm %>"
+              readonly
+            />
+          </td>
+
+          <td>
+            <!-- NÚT XEM -->
+            <button type="button" class="btn btn-edit btn-edit-dm">
+              ✏️ Sửa
+            </button>
+
+            <a
+              href="/admin/danhmuc/xoa/<%= dm.madm %>"
+              onclick="return confirm('Xóa danh mục này?')"
+              class="btn btn-delete"
+            >
+              🗑 Xóa
+            </a>
+
+            <!-- NÚT SỬA -->
+            <button type="button" class="btn btn-save btn-save-dm" style="display:none;">
+              💾 Lưu
+            </button>
+
+            <button type="button" class="btn btn-cancel btn-cancel-dm" style="display:none;">
+              ❌ Hủy
+            </button>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<script src="/js/admin-danhmuc.js"></script>
+
+<%- include('../layouts/main-footer') %>

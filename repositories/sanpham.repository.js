@@ -86,5 +86,17 @@ export const sanphamRepository = {
     );
   },
 
-
+  searchByName: async (keyword) => {
+    logger.info(`Repository: Searching sanpham by name: ${keyword}`);
+    const db = await pool;
+    const [rows] = await db.query(
+      `
+      SELECT * FROM sanpham
+      WHERE tensp LIKE ?
+      ORDER BY masp DESC
+      `,
+      [`%${keyword}%`]
+    );
+    return rows;
+  }
 };

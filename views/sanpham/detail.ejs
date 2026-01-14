@@ -1,5 +1,7 @@
 <%- include('../layouts/main-header') %>
-
+  <script>
+    const isLoggedIn = <%= user ? "true" : "false" %>;
+  </script>
 <div class="container product-detail">
   <div class="product-detail-wrapper">
 
@@ -12,6 +14,7 @@
         />
       <% } %>
     </div>
+
 
     <!-- THÔNG TIN -->
     <div class="product-detail-info">
@@ -45,19 +48,28 @@
 
         <button type="button" class="qty-btn" id="btn-increase">+</button>
       </div>
+      <!-- NÚT THÊM VÀO GIỎ HÀNG -->
+      <% if (user) { %>
+        <button
+          id="btn-add-cart"
+          class="btn add-to-cart"
+          data-id="<%= sanpham.masp %>"
+          data-name="<%= sanpham.tensp %>"
+          data-price="<%= sanpham.giatien %>"
+          data-image="<%= sanpham.hinhanh %>"
+          data-stock="<%= sanpham.soluongcon %>"
+        >
+          🛒 Thêm vào giỏ hàng
+        </button>
+      <% } else { %>
+        <button
+          class="btn btn-disabled"
+          onclick="alert('Vui lòng đăng nhập để thêm sản phẩm vào giỏ hàng')"
+        >
+          🔒 Đăng nhập để mua hàng
+        </button>
+      <% } %>
 
-      <!-- NÚT THÊM GIỎ HÀNG -->
-      <button
-        class="btn add-to-cart"
-        id="btn-add-cart"
-        data-id="<%= sanpham.masp %>"
-        data-name="<%= sanpham.tensp %>"
-        data-price="<%= sanpham.giatien %>"
-        data-image="<%= sanpham.hinhanh %>"
-        data-stock="<%= sanpham.soluongcon %>"
-      >
-        🛒 Thêm vào giỏ hàng
-      </button>
     </div>
 
   </div>

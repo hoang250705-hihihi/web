@@ -1,0 +1,68 @@
+<%- include('../layouts/main-header') %>
+
+<div class="admin-container">
+  <h2 class="admin-title">✏️ Sửa sản phẩm</h2>
+
+  <div class="admin-card">
+    <form
+      class="admin-form"
+      action="/admin/sanpham/sua/<%= sanpham.masp %>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div class="form-grid">
+        <input
+          name="tensp"
+          value="<%= sanpham.tensp %>"
+          placeholder="Tên sản phẩm"
+          required
+        />
+
+        <input
+          name="giatien"
+          type="number"
+          value="<%= sanpham.giatien %>"
+          placeholder="Giá"
+          required
+        />
+
+        <input
+          name="soluongcon"
+          type="number"
+          value="<%= sanpham.soluongcon %>"
+          placeholder="Số lượng"
+          required
+        />
+
+        <input
+          name="madm"
+          type="number"
+          value="<%= sanpham.madm %>"
+          placeholder="Mã danh mục"
+          required
+        />
+
+        <input name="hinhanh" type="file" accept="image/*" />
+
+        <textarea
+          name="mota"
+          rows="3"
+          class="textarea-2col"
+        ><%= sanpham.mota || "" %></textarea>
+      </div>
+
+      <% if (sanpham.hinhanh) { %>
+        <p>Ảnh hiện tại:</p>
+        <img
+          src="/uploads/sanpham/<%= sanpham.hinhanh %>"
+          class="admin-img"
+        />
+      <% } %>
+
+      <button class="btn btn-primary">💾 Lưu thay đổi</button>
+      <a href="/admin/sanpham" class="btn">↩ Quay lại</a>
+    </form>
+  </div>
+</div>
+
+<%- include('../layouts/main-footer') %>
